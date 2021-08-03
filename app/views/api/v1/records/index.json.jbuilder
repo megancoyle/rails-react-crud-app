@@ -1,0 +1,1 @@
+json.array! @records, partial: "api/v1/records/record", as: :record
