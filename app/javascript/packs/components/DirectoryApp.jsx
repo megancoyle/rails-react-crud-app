@@ -6,6 +6,7 @@ import Record from "./Record";
 import RecordForm from "./RecordForm";
 import Pagination from "./Pagination";
 import Loader from "./Loader";
+import SearchBox from "./SearchBox";
 
 class DirectoryApp extends React.Component {
   constructor(props) {
@@ -15,9 +16,11 @@ class DirectoryApp extends React.Component {
       currentPage: 1,
       recordsPerPage: 10,
       isLoading: true,
+      searchValue: "",
     };
     this.getRecords = this.getRecords.bind(this);
     this.createRecord = this.createRecord.bind(this);
+    this.searchHandler = this.searchHandler.bind(this);
   }
 
   componentDidMount() {
@@ -44,12 +47,31 @@ class DirectoryApp extends React.Component {
     this.setState({ records });
   }
 
+  searchHandler(value) {
+    this.setState({ searchValue: value });
+  }
+
   render() {
-    // pagination
     const { records, currentPage, recordsPerPage } = this.state;
+
+    // update records list based on search query
+    let updateRecords = records.filter((record) => {
+      return Object.keys(record).some((key) =>
+        record[key]
+          .toString()
+          .toLowerCase()
+          .includes(this.state.searchValue.toString().toLowerCase())
+      );
+    });
+
+    // pagination
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
+    const currentRecords = updateRecords.slice(
+      indexOfFirstRecord,
+      indexOfLastRecord
+    );
+
     // change page
     const paginate = (pageNumber) => this.setState({ currentPage: pageNumber });
 
@@ -58,6 +80,7 @@ class DirectoryApp extends React.Component {
         {!this.state.isLoading && (
           <>
             <RecordForm createRecord={this.createRecord} />
+            <SearchBox searchHandler={this.searchHandler} />
             <Records>
               {currentRecords.map((record) => (
                 <Record
@@ -67,16 +90,17 @@ class DirectoryApp extends React.Component {
                 />
               ))}
             </Records>
-            {records.length > 10 && (
+            {updateRecords.length > 10 && (
               <>
                 <Pagination
                   recordsPerPage={recordsPerPage}
                   totalRecords={records.length}
                   paginate={paginate}
                 />
-                <p>{records.length} Total Albums</p>
+                <p>{updateRecords.length} Total Albums</p>
               </>
             )}
+            {!updateRecords.length && <p>Nothing to see here...</p>}
           </>
         )}
         {this.state.isLoading && <Loader />}
