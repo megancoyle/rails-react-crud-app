@@ -1,15 +1,12 @@
 import React from "react";
 
-const Records = (props) => {
+const Stats = (props) => {
   return (
     <table className="table table-striped">
       <thead>
         <tr className="table-dark">
           <th scope="col">Artist</th>
-          <th scope="col">Album</th>
-          <th scope="col">Year</th>
-          <th scope="col">Condition</th>
-          <th scope="col"></th>
+          <th scope="col">Number of Albums Released Each Year</th>
         </tr>
       </thead>
       <tbody>{props.children}</tbody>
@@ -17,4 +14,4 @@ const Records = (props) => {
   );
 };
 
-export default Records;
+export default Stats;

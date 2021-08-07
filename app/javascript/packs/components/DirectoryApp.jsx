@@ -54,7 +54,7 @@ class DirectoryApp extends React.Component {
   }
 
   render() {
-    const { records, currentPage, recordsPerPage } = this.state;
+    const { records, currentPage, recordsPerPage, isLoading } = this.state;
 
     // update records list based on search query
     let updateRecords = records.filter((record) => {
@@ -79,7 +79,7 @@ class DirectoryApp extends React.Component {
 
     return (
       <>
-        {!this.state.isLoading && (
+        {!isLoading && (
           <>
             <RecordForm createRecord={this.createRecord} />
             <SearchBox searchHandler={this.searchHandler} />
@@ -105,7 +105,7 @@ class DirectoryApp extends React.Component {
             {!updateRecords.length && <p>Nothing to see here...</p>}
           </>
         )}
-        {this.state.isLoading && <Loader />}
+        {isLoading && <Loader />}
       </>
     );
   }

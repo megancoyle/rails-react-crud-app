@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap'
 import "channels"
 
 require('./components/DirectoryApp')
+require('./components/StatsApp')
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
