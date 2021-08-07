@@ -24,8 +24,10 @@ class Api::V1::RecordsController < ApplicationController
     end
 
     def update
+        @record_list = Record.where(artist: @record.artist)
         respond_to do |format|
             if @record.update(record_params)
+              @record_list.update_all(artist: @record.artist)
               format.json { render :show, status: :ok, location: api_v1_record_path(@record) }
             else
               format.json { render json: @record.errors, status: :unprocessable_entity }
