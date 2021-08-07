@@ -49,6 +49,8 @@ class DirectoryApp extends React.Component {
 
   searchHandler(value) {
     this.setState({ searchValue: value });
+    // reset current page to avoid pagination/search issues
+    this.setState({ currentPage: 1 });
   }
 
   render() {

@@ -1,3 +1,25 @@
 // Place all the styles related to the api/v1/records controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+button.btn.btn-outline-danger {
+  border-radius: 50px;
+}
+
+.table input {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  &:focus {
+    cursor: text;
+    background-color: transparent;
+  }
+}
+
+.search {
+  padding: 20px 0;
+  input {
+    padding-left: 5px;
+    width: 50%;
+  }
+}

@@ -6,11 +6,11 @@ const SearchBox = ({ searchHandler }) => {
   };
 
   return (
-    <form className="search">
+    <form className="search form-group">
       <input
         onChange={handleSearchInputChange}
         type="text"
-        placeholder="Search..."
+        placeholder="Search Records..."
       />
     </form>
   );

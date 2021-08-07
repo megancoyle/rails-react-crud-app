@@ -7,24 +7,21 @@ class Records extends React.Component {
   render() {
     return (
       <>
-        <div className="table-responsive">
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Artist</th>
-                <th scope="col">Album</th>
-                <th scope="col">Year</th>
-                <th scope="col">Condition</th>
-                <th scope="col" className="text-right">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>{this.props.children}</tbody>
-          </table>
-        </div>
+        <table className="table table-striped">
+        <thead>
+            <tr className="table-dark">
+            <th scope="col">Artist</th>
+            <th scope="col">Album</th>
+            <th scope="col">Year</th>
+            <th scope="col">Condition</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>{this.props.children}</tbody>
+        </table>
       </>
     );
   }
 }
+
 export default Records;
