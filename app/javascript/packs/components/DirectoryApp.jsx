@@ -49,7 +49,6 @@ class DirectoryApp extends React.Component {
 
   searchHandler(value) {
     this.setState({ searchValue: value });
-    // reset current page to avoid pagination/search issues
     this.setState({ currentPage: 1 });
   }
 
@@ -96,7 +95,7 @@ class DirectoryApp extends React.Component {
               <>
                 <Pagination
                   recordsPerPage={recordsPerPage}
-                  totalRecords={records.length}
+                  totalRecords={updateRecords.length}
                   paginate={paginate}
                 />
                 <p>{updateRecords.length} Total Albums</p>

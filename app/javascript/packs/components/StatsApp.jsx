@@ -11,9 +11,6 @@ class StatsApp extends React.Component {
       records: [],
       isLoading: true,
     };
-    this.getRecords = this.getRecords.bind(this);
-    this.formatRecordArray = this.formatRecordArray.bind(this);
-    this.getArtistArray = this.getArtistArray.bind(this);
   }
 
   componentDidMount() {
@@ -40,7 +37,7 @@ class StatsApp extends React.Component {
     const mergedText = [].concat.apply([], albumText);
     const commonWord = mergedText.reduce(
       (a, b, i, arr) =>
-        arr.filter((v) => v === a).length >= arr.filter((v) => v === b).length
+        arr.filter((w) => w === a).length >= arr.filter((w) => w === b).length
           ? a
           : b,
       null

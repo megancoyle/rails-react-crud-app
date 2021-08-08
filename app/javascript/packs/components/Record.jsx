@@ -18,7 +18,18 @@ class Record extends React.Component {
   }
 
   handleChange() {
-    this.updateRecord();
+    // todo: move this component to a functional component so
+    // variables like the ones listed below will be cleaner
+    if (
+      this.artistRef.current.value !== "" &&
+      this.albumRef.current.value != "" &&
+      this.yearRef.current.value != "" &&
+      this.conditionRef.current.value != ""
+    ) {
+      this.updateRecord();
+    } else {
+      alert("Please fill out every field.");
+    }
   }
 
   updateRecord = _.debounce(() => {
